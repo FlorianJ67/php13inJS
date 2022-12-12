@@ -7,105 +7,93 @@
     <title>Exo 13 php in js</title>
 </head>
 <body>
+
+    <p id="etat"></p>
+    <p id="vitesse"></p>
+    <p id="error"></p>
+
+    <button id="start">Démarrer</button>
+    <button id="stop">Stopper</button>
+    
     <script>
+
+const displayEtat = document.querySelector("#etat")
+const displaySpeed = document.querySelector("#vitesse")
+const displayError = document.querySelector("#error")
+
+const startBtn = document.querySelector("#start")
+const stopBtn = document.querySelector("#stop")
 
         class Voiture {
             constructor(marque,modele,nbPorte) {
-                this.marque = marque;
-                this.modele = modele;
-                this.nbPorte = nbPorte;
-                this.vitesse = 0;
-                this.etat = false;
+                this._marque = marque;
+                this._modele = modele;
+                this._nbPorte = nbPorte;
+                this._vitesse = 0;
+                this._etat = false;
             }
             
             // Getter
             get marque() {
-                return this.marque;
+                return this._marque;
             }
             get modele() {
-                return this.modele;
+                return this._modele;
             }
             get nbPorte() {
-                return this.nbPorte;
+                return this._nbPorte;
             }
             get vitesse() {
-                return this.vitesse;
+                return this._vitesse;
             }
             get etat() {
-                return this.etat;
+                return this._etat;
             }
 
             // Setter
             set marque(newMarque) {
-                this.marque = newMarque;
+                this._marque = newMarque;
             }
             set modele(newModele) {
-                this.modele = newModele;
+                this._modele = newModele;
             }
             set nbPorte(newNbPorte) {
-                this.nbPorte = newNbPorte;
+                this._nbPorte = newNbPorte;
             }
             
             // Method
             demarrer() {
-                if(this.etat == false) {
-                    this.etat = true;
-                    return "Le véhicule " + this.marque + this.modele + "démarre";
+                if(this._etat == false) {
+                    this._etat = true;
+                }
+                if (this._etat == true) {
+                    displayEtat.innerHTML = "démarrer";
                 }
             }
             accelerer(speed) {
-                if(this.etat == false) {
+                if(this._etat == false) {
                     return "Le véhicule est à l'arret, veuillez le démarrer";
                 } else {
-                    if (speed + this.vitesse < 0) {
+                    if (speed + this._vitesse < 0 && speed + this._vitesse <= 200) {
                         return "Entrer une valeur valide";
                     } else {
-                        this.vitesse += speed;
-                        return "Le véhicule " + this.marque + this.modele + " accélère de " + speed + " Km/h , sa vitesse actuelle est de " + this.vitesse;
+                        this._vitesse += speed;
+                        return "Le véhicule " + this._marque + this._modele + " accélère de " + speed + " Km/h , sa vitesse actuelle est de " + this._vitesse;
                     }
                 }
             }
             stopper() {
-                if(this.etat == true) {
-                    this.etat = false;
-                    this.vitesse = 0;
-                    return "Le véhicule " + this.marque + this.modele + " s'arrête!";
+                if(this._etat == true) {
+                    this._etat = false;
+                    this._vitesse = 0;
+                    return "Le véhicule " + this._marque + this._modele + " s'arrête!";
                 }
             }
-            
         }
 
-        const v1 = new Voiture("Peugeot","408",5)
-
+        v1 = new Voiture("Peugeot","408",5)
+        console.log(v1.demarrer());
         v1.demarrer();
-
-        // var v1 = ["peugeot","408",5]
-        // var v2 = ["Citroën","C4",3]
-
-
-        // function demarrer(){
-        //     if (this.array.length < 4) {
-        //         this [] += true;
-        //     } else {
-        //         this[3] = true;
-        //     }
-        // }
-
-        // function arreter(){
-        //     if (this[3] == true) {
-        //         this[3] = false;
-        //     } 
-        // }
-
-        // function accelerer(speed){
-        //     if (this.array.length < 5){
-        //         this [] += speed;
-        //     } else {
-        //         this[4] += speed;
-        //     }
-        // }
-
-
 
     </script>
 </body>
