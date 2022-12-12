@@ -28,6 +28,12 @@
             get nbPorte() {
                 return this.nbPorte;
             }
+            get vitesse() {
+                return this.vitesse;
+            }
+            get etat() {
+                return this.etat;
+            }
 
             // Setter
             set marque(newMarque) {
@@ -41,9 +47,38 @@
             }
             
             // Method
-
+            demarrer() {
+                if(this.etat == false) {
+                    this.etat = true;
+                    return "Le véhicule " + this.marque + this.modele + "démarre";
+                }
+            }
+            accelerer(speed) {
+                if(this.etat == false) {
+                    return "Le véhicule est à l'arret, veuillez le démarrer";
+                } else {
+                    if (speed + this.vitesse < 0) {
+                        return "Entrer une valeur valide";
+                    } else {
+                        this.vitesse += speed;
+                        return "Le véhicule " + this.marque + this.modele + " accélère de " + speed + " Km/h , sa vitesse actuelle est de " + this.vitesse;
+                    }
+                }
+            }
+            stopper() {
+                if(this.etat == true) {
+                    this.etat = false;
+                    this.vitesse = 0;
+                    return "Le véhicule " + this.marque + this.modele + " s'arrête!";
+                }
+            }
             
         }
+
+        const v1 = new Voiture("Peugeot","408",5)
+
+        v1.demarrer();
+
         // var v1 = ["peugeot","408",5]
         // var v2 = ["Citroën","C4",3]
 
