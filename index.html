@@ -8,31 +8,58 @@
 </head>
 <body>
     <script>
-        var v1 = ["peugeot","408",5]
-        var v2 = ["Citroën","C4",3]
 
-
-        function demarrer(){
-            if (this.array.length < 4) {
-                this [] += true;
-            } else {
-                this[3] = true;
+        class Voiture {
+            constructor(marque,modele,nbPorte) {
+                this.marque = marque;
+                this.modele = modele;
+                this.nbPorte = nbPorte;
+                this.vitesse = 0;
+                this.etat = false;
             }
-        }
-
-        function arreter(){
-            if (this[3] == true) {
-                this [3] = false;
-            } 
-        }
-
-        function accelerer(speed){
-            if (this.array.length < 5){
-                this [] += speed;
-            } else {
-                this[4] += speed;
+            
+            // Getter
+            get marque() {
+                return this.marque;
             }
+            get modele() {
+                return this.modele;
+            }
+            get nbPorte() {
+                return this.nbPorte;
+            }
+            
+            // Method
+            
+            
         }
+        // var v1 = ["peugeot","408",5]
+        // var v2 = ["Citroën","C4",3]
+
+
+        // function demarrer(){
+        //     if (this.array.length < 4) {
+        //         this [] += true;
+        //     } else {
+        //         this[3] = true;
+        //     }
+        // }
+
+        // function arreter(){
+        //     if (this[3] == true) {
+        //         this[3] = false;
+        //     } 
+        // }
+
+        // function accelerer(speed){
+        //     if (this.array.length < 5){
+        //         this [] += speed;
+        //     } else {
+        //         this[4] += speed;
+        //     }
+        // }
+
+
 
     </script>
 </body>
