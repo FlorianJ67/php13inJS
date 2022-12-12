@@ -9,20 +9,26 @@
 <body>
 
     <p id="etat"></p>
-    <p id="vitesse"></p>
+    <p id="vitesse">0</p>
     <p id="error"></p>
 
     <button id="start">Démarrer</button>
     <button id="stop">Stopper</button>
-    
+        <input  type="number" id="accelerate">
+        <button id="accelerateBtn">Accelerez</button>
+
     <script>
 
-const displayEtat = document.querySelector("#etat")
-const displaySpeed = document.querySelector("#vitesse")
-const displayError = document.querySelector("#error")
+        //displayer
+        const displayEtat = document.querySelector("#etat")
+        const displaySpeed = document.querySelector("#vitesse")
+        const displayError = document.querySelector("#error")
 
-const startBtn = document.querySelector("#start")
-const stopBtn = document.querySelector("#stop")
+        //button
+        const startBtn = document.querySelector("#start")
+        const stopBtn = document.querySelector("#stop")
+        const accelerateValue = document.querySelector("#accelerate")
+        const accelerateBtn = document.querySelector("#accelerateBtn")
 
         class Voiture {
             constructor(marque,modele,nbPorte) {
@@ -63,37 +69,61 @@ const stopBtn = document.querySelector("#stop")
             
             // Method
             demarrer() {
-                if(this._etat == false) {
-                    this._etat = true;
+
+                //clear the error box
+                if (displayError.innerHTML != ""){
+                    displayError.innerHTML = "";
                 }
-                if (this._etat == true) {
+
+                if(this._etat !== true) {
+                    this._etat = true;
                     displayEtat.innerHTML = "démarrer";
+                } else {
+                    displayError.innerHTML = "oskuuur"
                 }
             }
             accelerer(speed) {
-                if(this._etat == false) {
-                    return "Le véhicule est à l'arret, veuillez le démarrer";
+
+                //clear the error box
+                if (displayError.innerHTML != ""){
+                    displayError.innerHTML = "";
+                }
+
+                if(this._etat !== true) {
+                    displayError.innerHTML = "Le véhicule est à l'arret, veuillez le démarrer";
                 } else {
-                    if (speed + this._vitesse < 0 && speed + this._vitesse <= 200) {
-                        return "Entrer une valeur valide";
+                    if (speed + this._vitesse < 0 || speed + this._vitesse >= 200) {
+                        displayError.innerHTML = "Entrer une valeur valide";
                     } else {
                         this._vitesse += speed;
-                        return "Le véhicule " + this._marque + this._modele + " accélère de " + speed + " Km/h , sa vitesse actuelle est de " + this._vitesse;
+                        displaySpeed.innerHTML = this._vitesse;
                     }
                 }
             }
             stopper() {
-                if(this._etat == true) {
+
+                //clear the error box
+                if (displayError.innerHTML != ""){
+                    displayError.innerHTML = "";
+                }
+
+                if(this._etat !== false) {
                     this._etat = false;
+                    displayEtat.innerHTML = "stopper";
                     this._vitesse = 0;
-                    return "Le véhicule " + this._marque + this._modele + " s'arrête!";
+                    displaySpeed.innerHTML = this._vitesse;
+                } else {
+                    displayError.innerHTML = "le vehicule est déjà stopper";
                 }
             }
         }
 
         v1 = new Voiture("Peugeot","408",5)
-        console.log(v1.demarrer());
-        v1.demarrer();
+        startBtn.addEventListener("click", v1.demarrer);
+        stopBtn.addEventListener("click", v1.stopper);
+
+        accelerateBtn.addEventListener("click", v1.accelerer);
+
 
     </script>
 </body>
