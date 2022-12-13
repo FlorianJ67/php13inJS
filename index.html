@@ -101,7 +101,6 @@
                 }
             }
             accelerer() {
-                console.log(accelerateValue)
                 //clear the error box
                 if (displayError.innerHTML != ""){
                     displayError.innerHTML = "";
@@ -110,10 +109,10 @@
                 if(this._etat != true) {
                     displayError.innerHTML = "Le véhicule est à l'arret, veuillez le démarrer";
                 } else {
-                    if (parseInt(accelerateValue.innerHTML,10) + this._vitesse < 0 || parseInt(accelerateValue.innerHTML,10) + this._vitesse >= 200) {
-                        displayError.innerHTML = "Entrer une valeur valide";
+                    if (parseInt(accelerateValue.value) + this._vitesse < 0 || parseInt(accelerateValue.value) + this._vitesse >= 200) {
+                        displayError.innerHTML = "Vitesse trop élever pour le véhicule";
                     } else {
-                        this._vitesse += parseInt(accelerateValue.innerHTML,10);
+                        this._vitesse += parseInt(accelerateValue.value);
                         displaySpeed.innerHTML = this._vitesse;
                     }
                 }
