@@ -27,10 +27,10 @@
         <p id="vitesse">0</p>
         <p id="error"></p>
         
-        <button id="start">Démarrer</button>
-        <button id="stop">Stopper</button>
+        <button id="start" onclick="v1.demarrer()">Démarrer</button>
+        <button id="stop" onclick="v1.stopper()">Stopper</button>
         <input  type="number" id="accelerate">
-        <button id="accelerateBtn">Accelerez</button>
+        <button id="accelerateBtn" onclick="v1.accelerer()">Accelerer</button>
         
     </div>
 
@@ -74,45 +74,49 @@
             }
 
             // Setter
-            set marque(newMarque) {
+            set setMarque(newMarque) {
                 this._marque = newMarque;
             }
-            set modele(newModele) {
+            set setModele(newModele) {
                 this._modele = newModele;
             }
-            set nbPorte(newNbPorte) {
+            set setNbPorte(newNbPorte) {
                 this._nbPorte = newNbPorte;
+            }
+            set setEtat(etat) {
+                this._etat = etat;
             }
             
             // Method
             demarrer() {
-
                 //clear the error box
                 if (displayError.innerHTML != ""){
                     displayError.innerHTML = "";
                 }
-
-                if(this._etat !== true) {
-                    this._etat = true;
+                if(this.etat != true) {
+                    this.setEtat = true;
+                    
                     displayEtat.innerHTML = "démarrer";
+                    console.log(this.etat)
                 } else {
+                    //
+                    this._etat = false;
                     displayError.innerHTML = "oskuuur"
                 }
             }
-            accelerer(speed) {
-
+            accelerer() {
                 //clear the error box
                 if (displayError.innerHTML != ""){
                     displayError.innerHTML = "";
                 }
 
-                if(this._etat !== true) {
+                if(this._etat != true) {
                     displayError.innerHTML = "Le véhicule est à l'arret, veuillez le démarrer";
                 } else {
-                    if (speed + this._vitesse < 0 || speed + this._vitesse >= 200) {
+                    if (accelerateValue.innerHTML + this._vitesse < 0 || accelerateValue.innerHTML + this._vitesse >= 200) {
                         displayError.innerHTML = "Entrer une valeur valide";
                     } else {
-                        this._vitesse += speed;
+                        this._vitesse += parseInt(accelerateValue.innerHTML);
                         displaySpeed.innerHTML = this._vitesse;
                     }
                 }
@@ -124,22 +128,18 @@
                     displayError.innerHTML = "";
                 }
 
-                if(this._etat !== false) {
+                if(this._etat != false) {
                     this._etat = false;
                     displayEtat.innerHTML = "stopper";
                     this._vitesse = 0;
                     displaySpeed.innerHTML = this._vitesse;
                 } else {
-                    displayError.innerHTML = "le vehicule est déjà stopper";
+                    displayError.innerHTML = "le véhicule est déjà stopper";
                 }
             }
         }
 
         v1 = new Voiture("Peugeot","408",5)
-        startBtn.addEventListener("click", v1.demarrer);
-        stopBtn.addEventListener("click", v1.stopper);
-
-        accelerateBtn.addEventListener("click", v1.accelerer);
 
 
     </script>
