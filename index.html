@@ -97,14 +97,15 @@
                     this.setEtat = true;        
                     displayEtat.innerHTML = "démarrer";
                 } else {
-                    displayEtat.innerHTML = "Le véhicule est déjà démarrer";
+                    displayError.innerHTML = "Le véhicule est déjà démarrer";
                 }
             }
+            
             accelerer() {
                 //clear the error box
                 if (displayError.innerHTML != ""){
                     displayError.innerHTML = "";
-                }
+                } 
 
                 if(this._etat != true) {
                     displayError.innerHTML = "Le véhicule est à l'arret, veuillez le démarrer";
@@ -117,8 +118,8 @@
                     }
                 }
             }
-            stopper() {
 
+            stopper() {
                 //clear the error box
                 if (displayError.innerHTML != ""){
                     displayError.innerHTML = "";
@@ -136,7 +137,6 @@
         }
 
         v1 = new Voiture("Peugeot","408",5)
-
 
     </script>
 </body>
