@@ -96,25 +96,30 @@
                 if(this.etat != true) {
                     this.setEtat = true;        
                     displayEtat.innerHTML = "démarrer";
+                    displayEtat.style.color = "#357658";
                 } else {
                     displayError.innerHTML = "Le véhicule est déjà démarrer";
                 }
             }
-            
+
             accelerer() {
                 //clear the error box
                 if (displayError.innerHTML != ""){
                     displayError.innerHTML = "";
-                } 
+                }
 
                 if(this._etat != true) {
                     displayError.innerHTML = "Le véhicule est à l'arret, veuillez le démarrer";
                 } else {
-                    if (parseInt(accelerateValue.value) + this._vitesse < 0 || parseInt(accelerateValue.value) + this._vitesse >= 200) {
-                        displayError.innerHTML = "Vitesse trop élever pour le véhicule";
+                    if (accelerateValue.value == null || accelerateValue.value == "") {
+                        //do nothing if the value prompt is null
                     } else {
-                        this._vitesse += parseInt(accelerateValue.value);
-                        displaySpeed.innerHTML = this._vitesse;
+                        if (parseInt(accelerateValue.value) + this._vitesse < 0 || parseInt(accelerateValue.value) + this._vitesse >= 200) {
+                            displayError.innerHTML = "Vitesse trop élever pour le véhicule";
+                        } else {
+                            this._vitesse += parseInt(accelerateValue.value);
+                            displaySpeed.innerHTML = this._vitesse;
+                        }
                     }
                 }
             }
@@ -128,6 +133,7 @@
                 if(this._etat != false) {
                     this._etat = false;
                     displayEtat.innerHTML = "stopper";
+                    displayEtat.style.color = "#a74040";
                     this._vitesse = 0;
                     displaySpeed.innerHTML = this._vitesse;
                 } else {
